@@ -9,12 +9,14 @@ turtle.shape(img)
 
 data = pandas.read_csv('50_states.csv')
 all_states = data.state.values
+guessed_states = []
 
 game_is_on = True
-while game_is_on:
-    answer_state = screen.textinput(title='Guess the State', prompt="What's another state name?").lower().capitalize()
+while len(guessed_states) < 50:
+    answer_state = screen.textinput(title=f'{len(guessed_states)}/50', prompt="What's another state name?").lower().capitalize()
     answered_correct = answer_state in all_states
     if answered_correct:
+        guessed_states.append(answer_state)
         t = turtle.Turtle()
         t.hideturtle()
         t.penup()
